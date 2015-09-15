@@ -1,10 +1,10 @@
 package com.maxplus.study.login;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.http.Header;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -15,9 +15,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.maxplus.study.R;
-import com.maxplus.study.utils.HttpUtils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.sostudy.R;
+import com.maxplus.study.maintable.MainTabActivity;
 
 public class LoginActivity extends Activity {
 	private SharedPreferences sp;
@@ -34,7 +38,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		// 获得实例对象
 		sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-		//加载视图
+		// 加载视图
 		inivtView();
 	}
 
@@ -56,9 +60,9 @@ public class LoginActivity extends Activity {
 				// 设置默认是自动登录状态
 				auto_login.setChecked(true);
 				// 跳转界面
-				// Intent intent = new
-				// Intent(LoginActivity.this,LogoActivity.class);
-				// LoginActivity.this.startActivity(intent);
+				Intent intent = new Intent();
+				intent.setClass(LoginActivity.this, MainTabActivity.class);
+				startActivity(intent);
 
 			}
 		}
@@ -69,12 +73,40 @@ public class LoginActivity extends Activity {
 			public void onClick(View arg0) {
 				userName = edt_UserName.getText().toString();
 				password = edt_Password.getText().toString();
+				if (userName.equals("") || password.equals("")) {
+					Toast.makeText(LoginActivity.this, R.string.notNull,
+							Toast.LENGTH_LONG).show();
+					return;
+				}
 				String url = "http://www.sostudy.cn/login/index.php";
-				Map<String, String> param = new HashMap<String, String>();
+				RequestParams param = new RequestParams();
 				param.put(userName, userName);
 				param.put(password, password);
 				// 发起登录请求post
-				HttpUtils.doPostLogin(url, param);
+				AsyncHttpClient client = new AsyncHttpClient();
+				client.post(url, param, new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
+						// TODO Auto-generated method stub
+						// 请求成功，跳转到主界面...
+						System.out.println("成功！");
+						Intent intent = new Intent();
+						intent.setClass(LoginActivity.this,
+								MainTabActivity.class);
+						startActivity(intent);
+
+					}
+
+					@Override
+					public void onFailure(int arg0, Header[] arg1, byte[] arg2,
+							Throwable arg3) {
+						// TODO Auto-generated method stub
+						System.out.print("连接失败");
+						return;
+
+					}
+				});
 				// 登录成功和记住密码框为选中状态才保存用户信息
 				if (rem_pw.isChecked()) {
 					// 记住用户名、密码、
@@ -83,7 +115,6 @@ public class LoginActivity extends Activity {
 					editor.putString("PASSWORD", password);
 					editor.commit();
 				}
-				// 请求成功，跳转到主界面...
 
 			}
 		});
