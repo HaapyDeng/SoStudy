@@ -18,5 +18,6 @@
     <string name="main_home">主页</string>
     <string name="main_news">联系人</string>
     <string name="main_my">我的</string>
+    <string name="isNotNetWork">网络连接错误，请检查手机网络再试！</string>
     
 </resources>
