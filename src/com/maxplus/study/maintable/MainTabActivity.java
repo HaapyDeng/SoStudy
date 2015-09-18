@@ -2,82 +2,213 @@ package com.maxplus.study.maintable;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Window;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TabHost;
 
 import com.sostudy.R;
 
 @SuppressWarnings("deprecation")
-public class MainTabActivity extends TabActivity implements
-		OnCheckedChangeListener {
+public class MainTabActivity extends TabActivity {
 
-	private TabHost mTabHost;
-	private Intent mAIntent;
-	private Intent mBIntent;
-	private Intent mCIntent;
+	@SuppressWarnings("unused")
+	private RadioGroup rgTab;
+	private TabHost th;
+	private static final int SWIPE_MIN_DISTANCE = 120;
+	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+
+	GestureDetector gestureDetector;
+	View.OnTouchListener listener;
+	int currentView = 0;
+	private static int maxTabIndex = 3;
+
+	static int tab = -1;
+	static final int tab1 = 0;
+	static final int tab2 = 1;
+	static final int tab3 = 2;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.maintabs);
+		tab = tab1;
 
-		this.mAIntent = new Intent(this, AActivity.class);
-		this.mBIntent = new Intent(this, BActivity.class);
-		this.mCIntent = new Intent(this, CActivity.class);
+		initTab();
+		// 监听手指滑动事件，滑动切换activity
+		gestureDetector = new GestureDetector(new MyListener());
 
-		((RadioButton) findViewById(R.id.radio_button0))
-				.setOnCheckedChangeListener(this);
-		((RadioButton) findViewById(R.id.radio_button1))
-				.setOnCheckedChangeListener(this);
-		((RadioButton) findViewById(R.id.radio_button2))
-				.setOnCheckedChangeListener(this);
-		setupIntent();
+		listener = new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				return gestureDetector.onTouchEvent(event);
+			}
+		};
 	}
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if (isChecked) {
-			switch (buttonView.getId()) {
-			case R.id.radio_button0:
-				this.mTabHost.setCurrentTabByTag("A_TAB");
-				break;
-			case R.id.radio_button1:
-				this.mTabHost.setCurrentTabByTag("B_TAB");
-				break;
-			case R.id.radio_button2:
-				this.mTabHost.setCurrentTabByTag("C_TAB");
-				break;
+	class MyListener extends SimpleOnGestureListener {
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			// TODO Auto-generated method stub
+			try {
+
+				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+					if (currentView == maxTabIndex) {
+						currentView = 0;
+					} else {
+						currentView++;
+					}
+					th.setCurrentTab(currentView);
+					initTab(currentView);
+
+				} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+					if (currentView == 0) {
+						currentView = maxTabIndex;
+					} else {
+						currentView--;
+					}
+					th.setCurrentTab(currentView);
+					initTab(currentView);
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
+
+			return false;
 		}
 
 	}
 
-	private void setupIntent() {
-		this.mTabHost = getTabHost();
-		TabHost localTabHost = this.mTabHost;
+	RadioButton button1;
+	RadioButton button2;
+	RadioButton button3;
 
-		localTabHost.addTab(buildTabSpec("A_TAB", R.string.main_home,
-				R.drawable.icon_1_n, this.mAIntent));
+	private void initTab() {
+		rgTab = (RadioGroup) this.findViewById(R.id.main_radio);
+		th = this.getTabHost();
 
-		localTabHost.addTab(buildTabSpec("B_TAB", R.string.main_news,
-				R.drawable.icon_2_n, this.mBIntent));
+		th.addTab(th.newTabSpec("TS_HOME1").setIndicator("TS_HOME1")
+				.setContent(new Intent(MainTabActivity.this, AActivity.class)));
+		th.addTab(th.newTabSpec("TS_HOME2").setIndicator("TS_HOME2")
+				.setContent(new Intent(MainTabActivity.this, BActivity.class)));
+		th.addTab(th.newTabSpec("TS_HOME3").setIndicator("TS_HOME3")
+				.setContent(new Intent(MainTabActivity.this, CActivity.class)));
+		button1 = (RadioButton) findViewById(R.id.radio_button0);
+		button2 = (RadioButton) findViewById(R.id.radio_button1);
+		button3 = (RadioButton) findViewById(R.id.radio_button2);
+		button1.setTextColor(Color.BLUE);
+		th.setCurrentTab(0);
 
-		localTabHost.addTab(buildTabSpec("C_TAB", R.string.main_my,
-				R.drawable.icon_3_n, this.mCIntent));
+		// TODO Auto-generated method stub
+
+		button1.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (tab == tab1) {
+					return;
+				}
+				th.setCurrentTabByTag("TS_HOME1");
+				button1.setTextColor(Color.BLUE);
+				setOther(tab1);
+			}
+		});
+
+		button2.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				if (tab == tab2) {
+					return;
+				}
+				th.setCurrentTabByTag("TS_HOME2");
+				button2.setTextColor(Color.BLUE);
+				setOther(tab2);
+			}
+		});
+
+		button3.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				th.setCurrentTabByTag("TS_HOME3");
+				button3.setTextColor(Color.BLUE);
+				setOther(tab3);
+			}
+		});
 
 	}
 
-	private TabHost.TabSpec buildTabSpec(String tag, int resLabel, int resIcon,
-			final Intent content) {
-		return this.mTabHost
-				.newTabSpec(tag)
-				.setIndicator(getString(resLabel),
-						getResources().getDrawable(resIcon))
-				.setContent(content);
+	private void setOther(int state) {
+		switch (tab) {
+		case tab1:
+			button1.setTextColor(Color.BLACK);
+			break;
+		case tab2:
+			button2.setTextColor(Color.BLACK);
+			break;
+		case tab3:
+			button3.setTextColor(Color.BLACK);
+			break;
+		default:
+			break;
+		}
+
+		tab = state;
 	}
+
+	private void initTab(int tabIndex) {
+		switch (tabIndex) {
+		case tab1:
+			button1.setTextColor(Color.BLUE);
+			setOther(tab1);
+			break;
+		case tab2:
+			button2.setTextColor(Color.BLUE);
+			setOther(tab2);
+			break;
+		case tab3:
+			setOther(tab3);
+			button3.setTextColor(Color.BLUE);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		if (gestureDetector.onTouchEvent(ev)) {
+			ev.setAction(MotionEvent.ACTION_CANCEL);
+		}
+		return super.dispatchTouchEvent(ev);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
 }

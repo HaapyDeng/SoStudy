@@ -17,6 +17,6 @@
     <string name ="title_activity_main">tab</string>
     <string name="main_home">主页</string>
     <string name="main_news">联系人</string>
-    <string name="main_my">个人中心</string>
+    <string name="main_my">我的</string>
     
 </resources>
