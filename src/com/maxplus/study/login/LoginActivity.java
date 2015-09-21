@@ -1,14 +1,20 @@
 package com.maxplus.study.login;
 
 import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -18,30 +24,31 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.api.BasicCallback;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.sostudy.R;
-import com.maxplus.study.application.AppApplication;
+import com.loopj.android.http.ResponseHandlerInterface;
 import com.maxplus.study.maintable.MainTabActivity;
+import com.maxplus.study.utils.HttpClient;
+import com.maxplus.study.utils.NetworkUtils;
+import com.sostudy.R;
 
 public class LoginActivity extends Activity {
 	private SharedPreferences sp;
 	private EditText edt_UserName;
 	private EditText edt_Password;
 	private LinearLayout ll, ll2;
-	// private ImageView img;
 	private Button btn_login;
 	private String userName;
 	private String password;
 	private CheckBox rem_pw;
-	private AppApplication app;
+	private String service = "moodle_mobile_app";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,7 @@ public class LoginActivity extends Activity {
 		btn_login = (Button) findViewById(R.id.login);
 		ll = (LinearLayout) findViewById(R.id.ll_1);
 		ll2 = (LinearLayout) findViewById(R.id.imgView);
+
 		Animation animation = (Animation) AnimationUtils.loadAnimation(
 				LoginActivity.this, R.anim.translate);
 		ll2.startAnimation(animation);
@@ -75,7 +83,7 @@ public class LoginActivity extends Activity {
 				ll.setVisibility(View.VISIBLE);
 			}
 
-		}, 100);
+		}, 500);
 
 		// 判断记住密码多选框的状态
 		if (sp.getBoolean("ISCHECK", false)) {
@@ -94,6 +102,7 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
+
 				userName = edt_UserName.getText().toString();
 				password = edt_Password.getText().toString();
 				if (userName.equals("") || password.equals("")) {
@@ -101,37 +110,9 @@ public class LoginActivity extends Activity {
 							Toast.LENGTH_LONG).show();
 					return;
 				}
-				String url = "http://www.sostudy.cn/login/index.php";
-				RequestParams param = new RequestParams();
-				param.put(userName, userName);
-				param.put(password, password);
-				// 发起登录请求post
-				AsyncHttpClient client = new AsyncHttpClient();
-				client.post(url, param, new AsyncHttpResponseHandler() {
 
-					@Override
-					public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-						// TODO Auto-generated method stub
-						// 请求成功，跳转到主界面...
-						app = new AppApplication();
+				doLoginPost();
 
-						System.out.println("成功！");
-						Intent intent = new Intent();
-						intent.setClass(LoginActivity.this,
-								MainTabActivity.class);
-						startActivity(intent);
-
-					}
-
-					@Override
-					public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-							Throwable arg3) {
-						// TODO Auto-generated method stub
-						System.out.print("连接失败");
-						return;
-
-					}
-				});
 				// 登录成功和记住密码框为选中状态才保存用户信息
 				if (rem_pw.isChecked()) {
 					// 记住用户名、密码、
@@ -142,7 +123,9 @@ public class LoginActivity extends Activity {
 				}
 
 			}
+
 		});
+
 		// 监听记住密码多选框按钮事件
 		rem_pw.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -179,4 +162,89 @@ public class LoginActivity extends Activity {
 		JPushInterface.onPause(this);
 	}
 
+	private void doLoginPost() {
+		// 判断手机网络是否连接
+		if (!NetworkUtils.checkNetWork(LoginActivity.this)) {
+			Toast.makeText(LoginActivity.this, R.string.isNotNetWork,
+					Toast.LENGTH_LONG).show();
+			return;
+		}
+		String url = "/login/token.php";
+		RequestParams param = new RequestParams();
+		param.put("username", userName);
+		param.put("password", password);
+		param.put("service", service);
+		// 发起登录请求post
+		String realUrl = HttpClient.getAbsoluteUrl(url);
+		Log.i("realUrl", "" + realUrl);
+		HttpClient.post(realUrl, param, new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
+					Throwable arg3) {
+				// TODO Auto-generated method stub
+				Log.i("ferror", "" + arg3);
+				
+				
+			}
+
+			@Override
+			public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
+				// TODO Auto-generated method stub
+				Log.i("response", "" + arg2);
+				
+			}
+
+//			@Override
+//			public void onSuccess(int statusCode, Header[] headers,
+//					JSONArray response) {
+//				super.onSuccess(statusCode, headers, response);
+//				Log.i("response", "" + response);
+//			}
+//
+//			@Override
+//			public void onFailure(int statusCode, Header[] headers,
+//					Throwable throwable, JSONObject errorResponse) {
+//				// TODO Auto-generated method stub
+//				super.onFailure(statusCode, headers, throwable, errorResponse);
+//				Log.i("error", "" + errorResponse);
+//			}
+		});
+	}
+
+	private void registerToIm(final String userName, final String password) {
+		// TODO Auto-generated method stub
+		JMessageClient.register(userName, password, new BasicCallback() {
+
+			@Override
+			public void gotResult(final int status, final String desc) {
+				Toast.makeText(LoginActivity.this, "注册成功+" + status,
+						Toast.LENGTH_LONG).show();
+				// 注册到IM成功，跳转到主界面
+				Intent intent = new Intent();
+				intent.setClass(LoginActivity.this, MainTabActivity.class);
+				startActivity(intent);
+				/**
+				 * LoginActivity.this.runOnUiThread(new Runnable() {
+				 * 
+				 * @Override public void run() { if (status == 0) {
+				 *           JMessageClient.login(userName, password, new
+				 *           BasicCallback() {
+				 * @Override public void gotResult(int arg0, String arg1) { //
+				 *           TODO Auto-generated method stub if (status == 0) {
+				 *           // 注册到IM成功，跳转到主界面 Intent intent = new Intent();
+				 *           intent.setClass( LoginActivity.this,
+				 *           MainTabActivity.class); startActivity(intent); }
+				 *           else { Toast.makeText( LoginActivity.this,
+				 *           "注册到IM失败！！！", Toast.LENGTH_LONG) .show(); return; }
+				 *           }
+				 * 
+				 *           }); } } });
+				 */
+
+			}
+
+		});
+
+	}
 }

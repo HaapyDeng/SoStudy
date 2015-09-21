@@ -14,10 +14,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_b">BActivity</string>
     <string name="title_activity_c">CActivity</string>
-    <string name ="title_activity_main">tab</string>
+    <string name="title_activity_main">tab</string>
     <string name="main_home">主页</string>
     <string name="main_news">联系人</string>
     <string name="main_my">我的</string>
     <string name="isNotNetWork">网络连接错误，请检查手机网络再试！</string>
-    
+    <string name="title_activity_chat">ChatActivity</string>
+
 </resources>
