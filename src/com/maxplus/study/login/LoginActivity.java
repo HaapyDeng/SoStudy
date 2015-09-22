@@ -1,9 +1,7 @@
 package com.maxplus.study.login;
 
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -30,10 +28,8 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
 import com.maxplus.study.maintable.MainTabActivity;
 import com.maxplus.study.utils.HttpClient;
 import com.maxplus.study.utils.NetworkUtils;
@@ -49,6 +45,7 @@ public class LoginActivity extends Activity {
 	private String password;
 	private CheckBox rem_pw;
 	private String service = "moodle_mobile_app";
+	public String token;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +88,10 @@ public class LoginActivity extends Activity {
 			rem_pw.setChecked(true);
 			edt_UserName.setText(sp.getString("USER_NAME", ""));
 			edt_Password.setText(sp.getString("PASSWORD", ""));
+			userName = sp.getString("USER_NAME", "");
+			password = sp.getString("PASSWORD", "");
 			// 跳转界面
-			Intent intent = new Intent();
-			intent.setClass(LoginActivity.this, MainTabActivity.class);
-			startActivity(intent);
+			doLoginPost();
 
 		}
 		// 监听登录事件
@@ -169,82 +166,93 @@ public class LoginActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 			return;
 		}
-		String url = "/login/token.php";
+		String url = "http://www.sostudy.cn/login/token.php";
 		RequestParams param = new RequestParams();
 		param.put("username", userName);
 		param.put("password", password);
 		param.put("service", service);
 		// 发起登录请求post
-		String realUrl = HttpClient.getAbsoluteUrl(url);
-		Log.i("realUrl", "" + realUrl);
-		HttpClient.post(realUrl, param, new AsyncHttpResponseHandler() {
+		Log.i("realUrl", "" + url);
+		HttpClient.post(url, param, new JsonHttpResponseHandler() {
 
 			@Override
-			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-					Throwable arg3) {
-				// TODO Auto-generated method stub
-				Log.i("ferror", "" + arg3);
-				
-				
+			public void onSuccess(int statusCode, Header[] headers,
+					JSONObject response) {
+				super.onSuccess(statusCode, headers, response);
+				Log.i("response", "" + response);
+				try {
+					if (response.has("error")) {
+						Toast.makeText(LoginActivity.this,
+								response.getString("error"), Toast.LENGTH_LONG)
+								.show();
+						return;
+
+					} else if (response.has("token")) {
+						token = response.getString("token");
+						Toast.makeText(LoginActivity.this,
+								R.string.successLogin, Toast.LENGTH_SHORT)
+								.show();
+						// 登录到IM聊天服务器
+						LoginToIm(userName, password);
+					} else {
+						Toast.makeText(LoginActivity.this, R.string.tryLater,
+								Toast.LENGTH_SHORT).show();
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			@Override
-			public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
 				// TODO Auto-generated method stub
-				Log.i("response", "" + arg2);
-				
+				super.onFailure(statusCode, headers, throwable, errorResponse);
+				Log.i("error", "" + errorResponse);
+				Toast.makeText(LoginActivity.this, R.string.tryLater,
+						Toast.LENGTH_SHORT).show();
 			}
-
-//			@Override
-//			public void onSuccess(int statusCode, Header[] headers,
-//					JSONArray response) {
-//				super.onSuccess(statusCode, headers, response);
-//				Log.i("response", "" + response);
-//			}
-//
-//			@Override
-//			public void onFailure(int statusCode, Header[] headers,
-//					Throwable throwable, JSONObject errorResponse) {
-//				// TODO Auto-generated method stub
-//				super.onFailure(statusCode, headers, throwable, errorResponse);
-//				Log.i("error", "" + errorResponse);
-//			}
 		});
 	}
 
-	private void registerToIm(final String userName, final String password) {
-		// TODO Auto-generated method stub
-		JMessageClient.register(userName, password, new BasicCallback() {
-
+	// 登录到IM
+	private void LoginToIm(final String userName, final String password) {
+		JMessageClient.login(userName, password, new BasicCallback() {
 			@Override
-			public void gotResult(final int status, final String desc) {
-				Toast.makeText(LoginActivity.this, "注册成功+" + status,
-						Toast.LENGTH_LONG).show();
-				// 注册到IM成功，跳转到主界面
-				Intent intent = new Intent();
-				intent.setClass(LoginActivity.this, MainTabActivity.class);
-				startActivity(intent);
-				/**
-				 * LoginActivity.this.runOnUiThread(new Runnable() {
-				 * 
-				 * @Override public void run() { if (status == 0) {
-				 *           JMessageClient.login(userName, password, new
-				 *           BasicCallback() {
-				 * @Override public void gotResult(int arg0, String arg1) { //
-				 *           TODO Auto-generated method stub if (status == 0) {
-				 *           // 注册到IM成功，跳转到主界面 Intent intent = new Intent();
-				 *           intent.setClass( LoginActivity.this,
-				 *           MainTabActivity.class); startActivity(intent); }
-				 *           else { Toast.makeText( LoginActivity.this,
-				 *           "注册到IM失败！！！", Toast.LENGTH_LONG) .show(); return; }
-				 *           }
-				 * 
-				 *           }); } } });
-				 */
-
+			public void gotResult(final int status, String desc) {
+				if (status == 0) {
+					// 登录到IM成功，跳转到主界面
+					Intent intent = new Intent();
+					intent.setClass(LoginActivity.this, MainTabActivity.class);
+					startActivity(intent);
+				} else {
+					Toast.makeText(LoginActivity.this, R.string.tryLater,
+							Toast.LENGTH_SHORT).show();
+				}
 			}
-
 		});
+		/**
+		 * 注册用户名和密码到Im
+		 * 
+		 * JMessageClient.register(userName, password, new BasicCallback() {
+		 * 
+		 * @Override public void gotResult(final int status, final String desc)
+		 *           { LoginActivity.this.runOnUiThread(new Runnable() {
+		 * @Override public void run() { if (status == 0) {
+		 *           JMessageClient.login(userName, password, new
+		 *           BasicCallback() {
+		 * @Override public void gotResult(final int status, String desc) { if
+		 *           (status == 0) { // 登录到IM成功，跳转到主界面 Intent intent = new
+		 *           Intent(); intent.setClass( LoginActivity.this,
+		 *           MainTabActivity.class); startActivity(intent); } else {
+		 * 
+		 *           } } }); } else {
+		 * 
+		 *           } } }); }
+		 * 
+		 *           });
+		 */
 
 	}
 }
