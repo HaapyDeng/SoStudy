@@ -33,7 +33,7 @@
     <application
         android:name="com.maxplus.study.application.AppApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
@@ -143,20 +143,29 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name="com.maxplus.study.maintable.AActivity"
+            android:name="com.maxplus.study.maintable.ConversationListActivity"
             android:label="@string/title_activity_a" >
         </activity>
         <activity
-            android:name="com.maxplus.study.maintable.BActivity"
+            android:name="com.maxplus.study.maintable.MeFragment"
             android:label="@string/title_activity_b" >
         </activity>
         <activity
-            android:name="com.maxplus.study.maintable.CActivity"
+            android:name="com.maxplus.study.maintable.ContactsFragment"
             android:label="@string/title_activity_c" >
         </activity>
         <activity
             android:name="com.maxplus.study.chat.ChatActivity"
             android:label="@string/title_activity_chat" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.main.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.login.LogoutActivity"
+            android:label="@string/title_activity_logout" >
         </activity>
     </application>
 

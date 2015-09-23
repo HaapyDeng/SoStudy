@@ -31,7 +31,7 @@ import com.sostudy.R;
  * 
  * 
  */
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapter1 extends PagerAdapter {
 
 	// 界面列表
 	private List<View> views;
@@ -39,7 +39,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
 	private static final String SHAREDPREFERENCES_NAME = "first_pref";
 
-	public ViewPagerAdapter(List<View> views2, Activity activity) {
+	public ViewPagerAdapter1(List<View> views2, Activity activity) {
 		this.views = views2;
 		this.activity = activity;
 	}

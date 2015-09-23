@@ -12,11 +12,19 @@ public class NetworkUtils {
 	 *            Context
 	 * @return true 表示网络可用
 	 */
-	/** 网络不可用 */
+	/**
+	 * 网络不可用
+	 * 
+	 * */
 	public static final int NONETWORK = 0;
-	/** 是wifi连接 */
+	/**
+	 * 是wifi连接
+	 * */
 	public static final int WIFI = 1;
-	/** 不是wifi连接 */
+	/**
+	 * 
+	 * 不是wifi连接
+	 * */
 	public static final int NOWIFI = 2;
 
 	/**

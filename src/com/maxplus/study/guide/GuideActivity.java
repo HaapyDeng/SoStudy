@@ -31,7 +31,7 @@ import com.sostudy.R;
 public class GuideActivity extends Activity implements OnPageChangeListener {
 
 	private ViewPager vp;
-	private ViewPagerAdapter vpAdapter;
+	private ViewPagerAdapter1 vpAdapter;
 	private List<View> views;
 
 	// 底部小点图片
@@ -63,7 +63,7 @@ public class GuideActivity extends Activity implements OnPageChangeListener {
 		views.add(inflater.inflate(R.layout.what_new_four, null));
 
 		// 初始化Adapter
-		vpAdapter = new ViewPagerAdapter(views, this);
+		vpAdapter = new ViewPagerAdapter1(views, this);
 		
 		vp = (ViewPager) findViewById(R.id.viewpager);
 		vp.setAdapter(vpAdapter);

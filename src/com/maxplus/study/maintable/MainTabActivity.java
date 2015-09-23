@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 
+import com.maxplus.study.chat.ConversationListFragment;
 import com.sostudy.R;
 
 @SuppressWarnings("deprecation")
@@ -102,11 +103,11 @@ public class MainTabActivity extends TabActivity {
 		th = this.getTabHost();
 
 		th.addTab(th.newTabSpec("TS_HOME1").setIndicator("TS_HOME1")
-				.setContent(new Intent(MainTabActivity.this, AActivity.class)));
+				.setContent(new Intent(MainTabActivity.this, ConversationListFragment.class)));
 		th.addTab(th.newTabSpec("TS_HOME2").setIndicator("TS_HOME2")
-				.setContent(new Intent(MainTabActivity.this, BActivity.class)));
+				.setContent(new Intent(MainTabActivity.this, MeFragment.class)));
 		th.addTab(th.newTabSpec("TS_HOME3").setIndicator("TS_HOME3")
-				.setContent(new Intent(MainTabActivity.this, CActivity.class)));
+				.setContent(new Intent(MainTabActivity.this, ContactsFragment.class)));
 		button1 = (RadioButton) findViewById(R.id.radio_button0);
 		button2 = (RadioButton) findViewById(R.id.radio_button1);
 		button3 = (RadioButton) findViewById(R.id.radio_button2);

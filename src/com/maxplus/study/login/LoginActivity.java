@@ -5,7 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,7 +30,7 @@ import cn.jpush.im.api.BasicCallback;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.maxplus.study.maintable.MainTabActivity;
+import com.maxplus.study.main.MainActivity;
 import com.maxplus.study.utils.HttpClient;
 import com.maxplus.study.utils.NetworkUtils;
 import com.sostudy.R;
@@ -46,6 +46,7 @@ public class LoginActivity extends Activity {
 	private CheckBox rem_pw;
 	private String service = "moodle_mobile_app";
 	public String token;
+	private ProgressDialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,21 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		// 获得实例对象
 		sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
 		// 加载视图
 		inivtView();
+		// 判断记住密码多选框的状态
+		// if (sp.getBoolean("ISCHECK", false)) {
+		// // 设置默认是记录密码状态
+		// rem_pw.setChecked(true);
+		// edt_UserName.setText(sp.getString("USER_NAME", ""));
+		// edt_Password.setText(sp.getString("PASSWORD", ""));
+		// userName = sp.getString("USER_NAME", "");
+		// password = sp.getString("PASSWORD", "");
+		// // 自动登录
+		// doLoginPost();
+		//
+		// }
 	}
 
 	private void inivtView() {
@@ -75,25 +89,12 @@ public class LoginActivity extends Activity {
 			public void run() {
 				Animation animation2 = (Animation) AnimationUtils
 						.loadAnimation(LoginActivity.this, R.anim.translate);
-
 				ll.startAnimation(animation2);
 				ll.setVisibility(View.VISIBLE);
 			}
 
 		}, 500);
 
-		// 判断记住密码多选框的状态
-		if (sp.getBoolean("ISCHECK", false)) {
-			// 设置默认是记录密码状态
-			rem_pw.setChecked(true);
-			edt_UserName.setText(sp.getString("USER_NAME", ""));
-			edt_Password.setText(sp.getString("PASSWORD", ""));
-			userName = sp.getString("USER_NAME", "");
-			password = sp.getString("PASSWORD", "");
-			// 跳转界面
-			doLoginPost();
-
-		}
 		// 监听登录事件
 		btn_login.setOnClickListener(new OnClickListener() {
 
@@ -141,8 +142,6 @@ public class LoginActivity extends Activity {
 
 			}
 		});
-
-		// 监听自动登录多选框事件
 	}
 
 	@Override
@@ -172,7 +171,9 @@ public class LoginActivity extends Activity {
 		param.put("password", password);
 		param.put("service", service);
 		// 发起登录请求post
-		Log.i("realUrl", "" + url);
+		Log.i("Url", "" + url);
+		dialog = ProgressDialog.show(LoginActivity.this, null, "正在登录中，请稍候...",
+				true, false);
 		HttpClient.post(url, param, new JsonHttpResponseHandler() {
 
 			@Override
@@ -185,6 +186,14 @@ public class LoginActivity extends Activity {
 						Toast.makeText(LoginActivity.this,
 								response.getString("error"), Toast.LENGTH_LONG)
 								.show();
+						// 清空用户名和密码，跳转到登录界面
+						SharedPreferences sp2 = getSharedPreferences(
+								"userInfo", Context.MODE_PRIVATE);
+						Editor ed = sp2.edit();
+						ed.putString("USER_NAME", "");
+						ed.putString("PASSWORD", "");
+						ed.putBoolean("ISCHECK", true);
+						ed.commit();
 						return;
 
 					} else if (response.has("token")) {
@@ -193,7 +202,9 @@ public class LoginActivity extends Activity {
 								R.string.successLogin, Toast.LENGTH_SHORT)
 								.show();
 						// 登录到IM聊天服务器
+
 						LoginToIm(userName, password);
+
 					} else {
 						Toast.makeText(LoginActivity.this, R.string.tryLater,
 								Toast.LENGTH_SHORT).show();
@@ -224,9 +235,12 @@ public class LoginActivity extends Activity {
 				if (status == 0) {
 					// 登录到IM成功，跳转到主界面
 					Intent intent = new Intent();
-					intent.setClass(LoginActivity.this, MainTabActivity.class);
+					intent.setClass(LoginActivity.this, MainActivity.class);
 					startActivity(intent);
+					finish();
+					dialog.dismiss();
 				} else {
+					dialog.dismiss();
 					Toast.makeText(LoginActivity.this, R.string.tryLater,
 							Toast.LENGTH_SHORT).show();
 				}
