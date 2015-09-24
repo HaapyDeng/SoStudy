@@ -35,7 +35,26 @@
     <string name="user_add_self_toast">不能添加自己为好友</string>
     <string name="adding_hint">正在添加</string>
     <string name="actionbar_conversation">会话</string>
-    <!--以下为错误码提示-->
+    <string name="group">群聊</string>
+    <string name="camera_not_prepared">摄像头尚未准备好</string>
+    <string name="sdcard_not_exist_toast">暂无外部存储</string>
+    <string name="combine_title">(%s)</string>
+    <string name="voice_length">10"</string>
+    <string name="copy_toast">已复制</string>
+    <string name="resend_message_hint">重发该消息？</string>
+    <string name="cancel">取消</string>
+    <string name="resend_commit">重发</string>
+    <string name="file_not_found_toast">文件丢失</string>
+    <string name="voice_fetch_failed_toast">获取语音失败，请重试</string>
+    <string name="send_voice_hint">松开 结束</string>
+    <string name="record_voice_hint">按住 说话</string>
+    <string name="cancel_record_voice_hint">松开手指，取消发送</string>
+    <string name="create_file_failed">创建文件失败</string>
+    <string name="move_to_cancel_hint">手指上滑，取消发送</string>
+    <string name="time_too_short_toast">时间太短！</string>
+    <string name="record_voice_permission_toast">若要使用语音功能，请选择允许录音</string>
+    <string name="rest_record_time_hint">还可以说%s秒</string>
+    <!-- 以下为错误码提示 -->
     <string name="server_800002">AppKey信息为空</string>
     <string name="server_800003">AppKey未注册</string>
     <string name="server_800004">用户ID为空</string>

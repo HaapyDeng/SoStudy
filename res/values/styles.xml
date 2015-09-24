@@ -1,20 +1,25 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="notitle">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CircularProgressBar">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="stroke_width">1dp</item>
+        <item name="progress" format="float">0.1</item>
+        <item name="progress_color">#3F80DD</item>
+        <item name="progress_background_color">#D0D4D8</item>
+        <item name="marker_visible">true</item>
+        <item name="thumb_visible">false</item>
     </style>
 
     <style name="main_tab_bottom">
@@ -38,7 +43,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">7dp</item>
         <item name="android:textColor">@color/action_bar_txt_color</item>
         <item name="android:background">#3C3C3C</item>

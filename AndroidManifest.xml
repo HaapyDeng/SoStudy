@@ -156,12 +156,13 @@
         </activity>
         <activity
             android:name="com.maxplus.study.chat.ChatActivity"
-            android:label="@string/title_activity_chat" >
+            android:label="@string/title_activity_chat"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name="com.maxplus.study.main.MainActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name="com.maxplus.study.login.LogoutActivity"
