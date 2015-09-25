@@ -280,30 +280,33 @@ public class ChatController implements OnClickListener, OnScrollListener,
 		// 点击添加按钮，弹出更多选项菜单
 		case R.id.add_file_btn:
 			// 如果在语音输入时点击了添加按钮，则显示菜单并切换到输入框
-			if (!isInputByKeyBoard) {
-				mChatView.isKeyBoard();
-				isInputByKeyBoard = true;
-				mChatView.showMoreMenu();
-				mIsShowMoreMenu = true;
-				mChatView.focusToInput(false);
-			} else {
-				if (mIsShowMoreMenu) {
-					if (mMoreMenuVisible) {
-						mChatView.focusToInput(true);
-						showSoftInput();
-						mMoreMenuVisible = false;
-					} else {
-						dismissSoftInput();
-						mChatView.focusToInput(false);
-						mMoreMenuVisible = true;
-					}
-				} else {
-					mChatView.focusToInput(false);
-					mChatView.showMoreMenu();
-					mIsShowMoreMenu = true;
-					mMoreMenuVisible = true;
-				}
-			}
+			dismissSoftInput();
+			mChatView.setMoreMenuHeight(0);
+			// if (!isInputByKeyBoard) {
+			// mChatView.isKeyBoard();
+			// isInputByKeyBoard = true;
+			// mChatView.showMoreMenu();
+			// mIsShowMoreMenu = true;
+			// mChatView.focusToInput(false);
+			// } else {
+			// if (mIsShowMoreMenu) {
+			// if (mMoreMenuVisible) {
+			// mChatView.focusToInput(true);
+			// showSoftInput();
+			// mMoreMenuVisible = false;
+			// } else {
+			// dismissSoftInput();
+			// mChatView.focusToInput(false);
+			// mMoreMenuVisible = true;
+			// }
+			// } else {
+			
+			mChatView.focusToInput(false);
+			mChatView.showMoreMenu();
+			mIsShowMoreMenu = true;
+			mMoreMenuVisible = true;
+			// // }
+			// }
 			break;
 		// 拍照
 		case R.id.pick_from_camera_btn:

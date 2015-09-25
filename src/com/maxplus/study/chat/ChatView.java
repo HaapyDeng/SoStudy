@@ -24,7 +24,7 @@ import cn.jpush.im.android.api.model.Conversation;
 
 import com.sostudy.R;
 
-public class ChatView extends RelativeLayout{
+public class ChatView extends RelativeLayout {
 
 	private LinearLayout mBackground;
 	private TableLayout mMoreMenuTl;
@@ -51,8 +51,7 @@ public class ChatView extends RelativeLayout{
 		this.mContext = context;
 	}
 
-
-	public void initModule(){
+	public void initModule() {
 		mChatListView = (ListView) findViewById(R.id.chat_list);
 		mReturnBtn = (ImageButton) findViewById(R.id.return_btn);
 		mRightBtn = (ImageButton) findViewById(R.id.right_btn);
@@ -70,58 +69,71 @@ public class ChatView extends RelativeLayout{
 		mBackground = (LinearLayout) findViewById(R.id.chat_background);
 		mMoreMenuTl = (TableLayout) findViewById(R.id.more_menu_tl);
 		mBackground.requestFocus();
-		mLoadingMessage = LayoutInflater.from(mContext).inflate(R.layout.loading_message_view,null);
+		mLoadingMessage = LayoutInflater.from(mContext).inflate(
+				R.layout.loading_message_view, null);
 		mChatInputEt.addTextChangedListener(watcher);
 		mChatInputEt.setOnFocusChangeListener(listener);
-        mChatInputEt.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        mChatInputEt.setSingleLine(false);
-        mChatInputEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    dismissMoreMenu();
-                    Log.i("ChatView", "dismissMoreMenu()----------");
-                }
-                return false;
-            }
-        });
-        mChatInputEt.setMaxLines(4);
-        setMoreMenuHeight();
+		mChatInputEt.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+		mChatInputEt.setSingleLine(false);
+		mChatInputEt
+				.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+					@Override
+					public boolean onEditorAction(TextView v, int actionId,
+							KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_DONE) {
+							dismissMoreMenu();
+							Log.i("ChatView", "dismissMoreMenu()----------");
+						}
+						return false;
+					}
+				});
+		mChatInputEt.setMaxLines(4);
+		setMoreMenuHeight();
 	}
 
-    public void setMoreMenuHeight() {
-        int softKeyboardHeight = SharePreferenceManager.getCachedKeyboardHeight();
-        if(softKeyboardHeight > 0){
-            mMoreMenuTl.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, softKeyboardHeight));
-        }
+	public void setMoreMenuHeight(int softKeyboardHeight) {
+		// int softKeyboardHeight = SharePreferenceManager
+		// .getCachedKeyboardHeight();
+		softKeyboardHeight = 300;
+		if (softKeyboardHeight > 0) {
+			mMoreMenuTl.setLayoutParams(new LinearLayout.LayoutParams(
+					RelativeLayout.LayoutParams.MATCH_PARENT,
+					softKeyboardHeight));
+		}
 
-    }
+	}
 
+	public void setMoreMenuHeight() {
+		mMoreMenuTl.setLayoutParams(new LinearLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT, 0));
+	}
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        int height = MeasureSpec.getSize(heightMeasureSpec);
-//        Rect rect = new Rect();
-//        Activity activity = (Activity)getContext();
-//        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-//        int statusBarHeight = rect.top;
-//        int screenHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
-//        int diff = (screenHeight - statusBarHeight) - height;
-//        if(mListener != null){
-//            mListener.onSoftKeyboardShown(diff>128, diff);
-//        }
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//    }
+	// @Override
+	// protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+	// int height = MeasureSpec.getSize(heightMeasureSpec);
+	// Rect rect = new Rect();
+	// Activity activity = (Activity)getContext();
+	// activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+	// int statusBarHeight = rect.top;
+	// int screenHeight =
+	// activity.getWindowManager().getDefaultDisplay().getHeight();
+	// int diff = (screenHeight - statusBarHeight) - height;
+	// if(mListener != null){
+	// mListener.onSoftKeyboardShown(diff>128, diff);
+	// }
+	// super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	// }
 
-    private TextWatcher watcher = new TextWatcher(){
+	private TextWatcher watcher = new TextWatcher() {
 		private CharSequence temp = "";
+
 		@Override
 		public void afterTextChanged(Editable arg0) {
 			// TODO Auto-generated method stub
-			if(temp.length() > 0){
+			if (temp.length() > 0) {
 				mAddFileIb.setVisibility(View.GONE);
 				mSendMsgBtn.setVisibility(View.VISIBLE);
-			}else{
+			} else {
 				mAddFileIb.setVisibility(View.VISIBLE);
 				mSendMsgBtn.setVisibility(View.GONE);
 			}
@@ -143,38 +155,39 @@ public class ChatView extends RelativeLayout{
 
 	};
 
-    public void focusToInput(boolean inputFocus){
-        if(inputFocus){
-            mChatInputEt.requestFocus();
-            Log.i("ChatView", "show softInput");
-            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }else {
-            mAddFileIb.requestFocusFromTouch();
-        }
-    }
+	public void focusToInput(boolean inputFocus) {
+		if (inputFocus) {
+			mChatInputEt.requestFocus();
+			Log.i("ChatView", "show softInput");
+			InputMethodManager imm = (InputMethodManager) mContext
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+		} else {
+			mAddFileIb.requestFocusFromTouch();
+		}
+	}
 
 	OnFocusChangeListener listener = new OnFocusChangeListener() {
 
 		@Override
 		public void onFocusChange(View v, boolean hasFocus) {
-			if(hasFocus){
-                Log.i("ChatView", "Input focus");
-                showMoreMenu();
-//				invisibleMoreMenu();
-                ChatController.mIsShowMoreMenu = true;
+			if (hasFocus) {
+				Log.i("ChatView", "Input focus");
+				showMoreMenu();
+				// invisibleMoreMenu();
+				ChatController.mIsShowMoreMenu = true;
 			}
 		}
 	};
 
-	public void setListeners(OnClickListener onClickListener){
+	public void setListeners(OnClickListener onClickListener) {
 		mReturnBtn.setOnClickListener(onClickListener);
 		mRightBtn.setOnClickListener(onClickListener);
-        mChatInputEt.setOnClickListener(onClickListener);
+		mChatInputEt.setOnClickListener(onClickListener);
 		mSendMsgBtn.setOnClickListener(onClickListener);
 		mSwitchIb.setOnClickListener(onClickListener);
 		mVoiceBtn.setOnClickListener(onClickListener);
-        mExpressionIb.setOnClickListener(onClickListener);
+		mExpressionIb.setOnClickListener(onClickListener);
 		mAddFileIb.setOnClickListener(onClickListener);
 		mTakePhotoIb.setOnClickListener(onClickListener);
 		mPickPictureIb.setOnClickListener(onClickListener);
@@ -182,57 +195,55 @@ public class ChatView extends RelativeLayout{
 		mSendVoiceIb.setOnClickListener(onClickListener);
 	}
 
-    public void setOnTouchListener(OnTouchListener listener){
-        mChatListView.setOnTouchListener(listener);
-    }
+	public void setOnTouchListener(OnTouchListener listener) {
+		mChatListView.setOnTouchListener(listener);
+	}
 
 	public void setChatListAdapter(MsgListAdapter adapter) {
 		mChatListView.setAdapter(adapter);
 		setToBottom();
 	}
 
-	public void setOnScrollListener(OnScrollListener onScrollChangedListener){
+	public void setOnScrollListener(OnScrollListener onScrollChangedListener) {
 		mChatListView.setOnScrollListener(onScrollChangedListener);
 	}
 
-	//如果是文字输入
-	public void isKeyBoard(){
+	// 如果是文字输入
+	public void isKeyBoard() {
 		mSwitchIb.setBackgroundResource(R.drawable.voice);
 		mChatInputEt.setVisibility(View.VISIBLE);
 		mVoiceBtn.setVisibility(View.GONE);
 		mExpressionIb.setVisibility(View.GONE);
-        if(mChatInputEt.getText().length() > 0){
-            mSendMsgBtn.setVisibility(View.VISIBLE);
-            mAddFileIb.setVisibility(View.GONE);
-        }else {
-            mSendMsgBtn.setVisibility(View.GONE);
-            mAddFileIb.setVisibility(View.VISIBLE);
-        }
+		if (mChatInputEt.getText().length() > 0) {
+			mSendMsgBtn.setVisibility(View.VISIBLE);
+			mAddFileIb.setVisibility(View.GONE);
+		} else {
+			mSendMsgBtn.setVisibility(View.GONE);
+			mAddFileIb.setVisibility(View.VISIBLE);
+		}
 	}
 
-	//语音输入
+	// 语音输入
 	public void notKeyBoard(Conversation conv, MsgListAdapter adapter) {
 		mChatInputEt.setVisibility(View.GONE);
 		mSwitchIb.setBackgroundResource(R.drawable.keyboard);
 		mVoiceBtn.setVisibility(View.VISIBLE);
 		mVoiceBtn.initConv(conv, adapter);
 		mExpressionIb.setVisibility(View.GONE);
-        mSendMsgBtn.setVisibility(View.GONE);
-        mAddFileIb.setVisibility(View.VISIBLE);
+		mSendMsgBtn.setVisibility(View.GONE);
+		mAddFileIb.setVisibility(View.VISIBLE);
 	}
 
-	public String getChatInput(){
+	public String getChatInput() {
 		return mChatInputEt.getText().toString();
 	}
 
-
-
-	public void setChatTitle(String targetId){
+	public void setChatTitle(String targetId) {
 		mChatTitle.setText(targetId);
 	}
 
-	//设置群聊名字
-	public void setChatTitle(String name, int count){
+	// 设置群聊名字
+	public void setChatTitle(String name, int count) {
 		String title = name + mContext.getString(R.string.combine_title);
 		mChatTitle.setText(String.format(title, count));
 	}
@@ -242,12 +253,12 @@ public class ChatView extends RelativeLayout{
 	}
 
 	public void setToBottom() {
-			mChatListView.post(new Runnable() {
-				@Override
-				public void run() {
-					mChatListView.setSelection(mChatListView.getBottom());
-				}
-			});
+		mChatListView.post(new Runnable() {
+			@Override
+			public void run() {
+				mChatListView.setSelection(mChatListView.getBottom());
+			}
+		});
 	}
 
 	public void removeHeadView() {
@@ -262,36 +273,36 @@ public class ChatView extends RelativeLayout{
 		mRightBtn.setImageResource(R.drawable.group_chat_detail);
 	}
 
-
 	public void showMoreMenu() {
 		mMoreMenuTl.setVisibility(View.VISIBLE);
 	}
 
-    public void invisibleMoreMenu(){
-        mMoreMenuTl.setVisibility(View.INVISIBLE);
-    }
+	public void invisibleMoreMenu() {
+		mMoreMenuTl.setVisibility(View.INVISIBLE);
+	}
 
-	public void dismissMoreMenu(){
+	public void dismissMoreMenu() {
 		mMoreMenuTl.setVisibility(View.GONE);
 	}
 
-    public void dismissRightBtn() {
-        mRightBtn.setVisibility(View.GONE);
-    }
+	public void dismissRightBtn() {
+		mRightBtn.setVisibility(View.GONE);
+	}
 
-    public void showRightBtn() {
-        mRightBtn.setVisibility(View.VISIBLE);
-    }
+	public void showRightBtn() {
+		mRightBtn.setVisibility(View.VISIBLE);
+	}
 
-    public void dismissRecordDialog() {
-     mVoiceBtn.dismissDialog();
-    }
+	public void dismissRecordDialog() {
+		mVoiceBtn.dismissDialog();
+	}
 
-    public void releaseRecorder() {
-        mVoiceBtn.releaseRecorder();
-    }
+	public void releaseRecorder() {
+		mVoiceBtn.releaseRecorder();
+	}
 
-    public void resetMoreMenuHeight() {
-        mMoreMenuTl.setLayoutParams(new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 0));
-    }
+	public void resetMoreMenuHeight() {
+		mMoreMenuTl.setLayoutParams(new LinearLayout.LayoutParams(
+				RelativeLayout.LayoutParams.MATCH_PARENT, 0));
+	}
 }
