@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import com.loopj.android.http.RequestParams;
 import com.maxplus.study.main.MainActivity;
 import com.maxplus.study.utils.HttpClient;
 import com.maxplus.study.utils.NetworkUtils;
+import com.maxplus.study.utils.SharePreferenceManager;
 import com.sostudy.R;
 
 public class LoginActivity extends Activity {
@@ -186,6 +188,7 @@ public class LoginActivity extends Activity {
 						Toast.makeText(LoginActivity.this,
 								response.getString("error"), Toast.LENGTH_LONG)
 								.show();
+						dialog.dismiss();
 						// 清空用户名和密码，跳转到登录界面
 						SharedPreferences sp2 = getSharedPreferences(
 								"userInfo", Context.MODE_PRIVATE);
@@ -206,6 +209,7 @@ public class LoginActivity extends Activity {
 						LoginToIm(userName, password);
 
 					} else {
+						dialog.dismiss();
 						Toast.makeText(LoginActivity.this, R.string.tryLater,
 								Toast.LENGTH_SHORT).show();
 					}
@@ -220,6 +224,7 @@ public class LoginActivity extends Activity {
 					Throwable throwable, JSONObject errorResponse) {
 				// TODO Auto-generated method stub
 				super.onFailure(statusCode, headers, throwable, errorResponse);
+				dialog.dismiss();
 				Log.i("error", "" + errorResponse);
 				Toast.makeText(LoginActivity.this, R.string.tryLater,
 						Toast.LENGTH_SHORT).show();
