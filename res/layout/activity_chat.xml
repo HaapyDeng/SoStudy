@@ -3,15 +3,13 @@
     android:id="@+id/chat_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F1F3">
+    android:background="#F0F1F3" >
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <include layout="@layout/menu_title_bar" />
-
 
         <LinearLayout
             android:id="@+id/chat_background"
@@ -20,17 +18,18 @@
             android:layout_above="@+id/send_msg_layout"
             android:layout_marginTop="@dimen/title_bar_height"
             android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true" >
 
             <ListView
                 android:id="@+id/chat_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#F0F1F3"
+                android:divider="@null"
                 android:listSelector="@android:color/transparent"
-                android:transcriptMode="normal"></ListView>
+                android:transcriptMode="normal" >
+            </ListView>
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/send_msg_layout"
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#E5E5E5"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,8 +45,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:visibility="visible">
-
+                android:visibility="visible" >
 
                 <ImageButton
                     android:id="@+id/switch_voice_ib"
@@ -58,12 +56,11 @@
                     android:background="@drawable/voice"
                     android:gravity="center" />
 
-
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal" >
 
                     <EditText
                         android:id="@+id/chat_input_et"
@@ -72,12 +69,12 @@
                         android:layout_marginRight="5dp"
                         android:layout_toLeftOf="@+id/expression_btn"
                         android:background="@drawable/chat_input_bg"
-                        android:gravity="start"
                         android:cursorVisible="true"
-                        android:textCursorDrawable="@drawable/text_cursor_bg"
+                        android:gravity="start"
+                        android:inputType="textMultiLine"
                         android:padding="5dp"
                         android:textColor="#000000"
-                        android:inputType="textMultiLine"/>
+                        android:textCursorDrawable="@drawable/text_cursor_bg" />
 
                     <ImageButton
                         android:id="@+id/expression_btn"
@@ -86,7 +83,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:background="@drawable/expression1"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <com.maxplus.study.chat.RecordVoiceBtnController
                         android:id="@+id/voice_btn"
@@ -101,13 +98,12 @@
                         android:textColor="@android:color/white"
                         android:textSize="14sp"
                         android:visibility="gone" />
-
                 </RelativeLayout>
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="5dp" >
 
                     <Button
                         android:id="@+id/send_msg_btn"
@@ -115,9 +111,9 @@
                         android:layout_height="30dp"
                         android:background="@drawable/register_btn_bg"
                         android:gravity="center_horizontal|center_vertical"
+                        android:padding="5dp"
                         android:text="发送"
                         android:textColor="@android:color/white"
-                        android:padding="5dp"
                         android:textSize="14sp"
                         android:visibility="gone" />
 
@@ -128,7 +124,6 @@
                         android:background="@drawable/more_menu"
                         android:focusable="true" />
                 </FrameLayout>
-
             </LinearLayout>
 
             <View
@@ -142,21 +137,21 @@
                 android:layout_height="wrap_content"
                 android:background="#F0F1F3"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="gone" >
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="40dp">
+                    android:layout_marginTop="40dp" >
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageButton
                             android:id="@+id/pick_from_local_btn"
@@ -177,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageButton
                             android:id="@+id/pick_from_camera_btn"
@@ -199,7 +194,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="invisible" >
 
                         <ImageButton
                             android:id="@+id/send_location_btn"
@@ -215,7 +210,6 @@
                             android:text="视频"
                             android:textColor="#696969" />
                     </LinearLayout>
-
                 </TableRow>
 
                 <TableRow
@@ -223,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp" >
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -231,7 +225,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="invisible" >
 
                         <ImageButton
                             android:id="@+id/send_voice_btn"
@@ -253,7 +247,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:visibility="invisible">
+                        android:visibility="invisible" >
 
                         <ImageButton
                             android:id="@+id/business_card_btn"
@@ -272,13 +266,11 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
+                        android:layout_weight="1" >
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
-
         </LinearLayout>
-        </RelativeLayout>
+    </RelativeLayout>
 
 </com.maxplus.study.chat.ChatView>

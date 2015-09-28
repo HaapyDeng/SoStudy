@@ -312,8 +312,8 @@ public class ChatActivity extends BaseActivity {
                 Environment.MEDIA_MOUNTED)) {
             Toast.makeText(this, this.getString(R.string.sdcard_not_exist_toast), Toast.LENGTH_SHORT).show();
         } else {
-//            intent.setClass(this, PickPictureTotalActivity.class);
-//            startActivity(intent);
+            intent.setClass(this, PickPictureTotalActivity.class);
+            startActivity(intent);
         }
     }
 

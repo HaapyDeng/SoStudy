@@ -54,6 +54,18 @@
     <string name="time_too_short_toast">时间太短！</string>
     <string name="record_voice_permission_toast">若要使用语音功能，请选择允许录音</string>
     <string name="rest_record_time_hint">还可以说%s秒</string>
+    <string name="choose_album_title">选择相册</string>
+    <string name="sdcard_not_prepare_toast">sdcard尚未准备好</string>
+    <string name="picture_num_limit_toast">你最多只能同时发送9张图片</string>
+    <string name="sending_hint">正在发送</string>
+    <string name="loading">正在加载</string>
+    <string name="send">发送</string>
+    <string name="load_origin_image">查看原图</string>
+    <string name="origin_picture">原图</string>
+    <string name="choose">选择</string>
+    <string name="local_picture_not_found_toast">暂无外部存储，某些本地图片不可预览</string>
+    <string name="downloading_hint">正在下载</string>
+    <string name="download_completed_toast">下载完成</string>
     <!-- 以下为错误码提示 -->
     <string name="server_800002">AppKey信息为空</string>
     <string name="server_800003">AppKey未注册</string>
