@@ -12,6 +12,7 @@
     <string name="successLogin">登录成功！</string>
     <string name="tryLater">请检查网络稍候重试！</string>
     <string name="serviceNotNormal">服务器异常，请稍候重试！</string>
+    <string name="title_activity_browserViewPager">选择图片</string>
     <string name="title_activity_a">AActivity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>

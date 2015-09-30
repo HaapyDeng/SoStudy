@@ -874,7 +874,7 @@ public class MsgListAdapter extends BaseAdapter {
 					holder.sendingIv.clearAnimation();
 					holder.sendingIv.setVisibility(View.GONE);
 				}
-				holder.picture.setAlpha(1.0f);
+//				holder.picture.setAlpha(1.0f);
 				holder.progressTv.setVisibility(View.GONE);
 				holder.resend.setVisibility(View.GONE);
 				break;
@@ -883,7 +883,7 @@ public class MsgListAdapter extends BaseAdapter {
 					holder.sendingIv.clearAnimation();
 					holder.sendingIv.setVisibility(View.GONE);
 				}
-				holder.picture.setAlpha(1.0f);
+//				holder.picture.setAlpha(1.0f);
 				holder.progressTv.setVisibility(View.GONE);
 				holder.resend.setVisibility(View.VISIBLE);
 				break;
@@ -977,7 +977,7 @@ public class MsgListAdapter extends BaseAdapter {
 
 	private void sendingImage(final ViewHolder holder, Animation sendingAnim,
 			Message msg, final String path) {
-		holder.picture.setAlpha(0.75f);
+//		holder.picture.setAlpha(0.75f);
 		holder.sendingIv.setVisibility(View.VISIBLE);
 		holder.sendingIv.startAnimation(sendingAnim);
 		holder.progressTv.setVisibility(View.VISIBLE);
@@ -1066,7 +1066,7 @@ public class MsgListAdapter extends BaseAdapter {
 		final String path = imgContent.getLocalThumbnailPath();
 		viewHolder.sendingIv.setVisibility(View.VISIBLE);
 		viewHolder.sendingIv.startAnimation(sendingAnim);
-		viewHolder.picture.setAlpha(0.75f);
+//		viewHolder.picture.setAlpha(0.75f);
 		viewHolder.resend.setVisibility(View.GONE);
 		viewHolder.progressTv.setVisibility(View.VISIBLE);
 		try {

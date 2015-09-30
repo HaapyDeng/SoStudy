@@ -3,7 +3,7 @@ package com.maxplus.study.chat;
 /**
  * GridView的每个item的数据对象
  * 
- * @author len
+ * @author Deng
  *
  */
 public class ImageBean{

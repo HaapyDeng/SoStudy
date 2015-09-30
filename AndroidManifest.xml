@@ -143,9 +143,26 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
+            android:name="com.maxplus.study.chat.BrowserViewPagerActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/title_activity_browserViewPager" >
+        </activity>
+        
+        <activity
             android:name="com.maxplus.study.maintable.ConversationListActivity"
             android:label="@string/title_activity_a" >
         </activity>
+        <activity
+            android:name="com.maxplus.study.chat.PickPictureTotalActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/title_activity_a" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.chat.PickPictureActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/title_activity_a" >
+        </activity>
+        
         <activity
             android:name="com.maxplus.study.maintable.MeFragment"
             android:label="@string/title_activity_b" >

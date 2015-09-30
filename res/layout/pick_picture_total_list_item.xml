@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <io.jchat.android.view.MyImageView
+    <com.maxplus.study.chat.MyImageView
         android:id="@+id/group_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -26,7 +26,7 @@
         android:textSize="18sp"
         android:textColor="@color/black"
         android:maxEms="7"
-        android:text="jpushdemo"/>
+        android:text="好学升"/>
 
     <TextView
         android:id="@+id/group_count"
