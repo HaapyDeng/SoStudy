@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.sostudy.R;
 
 /**
- * Created by Ken on 2015/1/21.
+ * Created by Deng on 2015/9/29.
  */
 public class AlbumListAdapter extends BaseAdapter{
 
