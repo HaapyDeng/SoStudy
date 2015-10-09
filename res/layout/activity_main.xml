@@ -9,21 +9,29 @@
     <LinearLayout
         android:id="@+id/actionbar_layout_tmp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_alignParentBottom="true"
-        android:background="#3C3C3C"
+        android:background="#799dfe"
         android:orientation="horizontal" >
 
         <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" >
 
             <Button
                 android:id="@+id/actionbar_msg_btn"
-                style="@style/ActionBarItem"
-                android:drawableTop="@drawable/actionbar_msg_drawable_bg"
-                android:text="消息" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/actionbar_msg_drawable_bg"
+                android:drawableTop="@drawable/index_home"
+                android:gravity="center_horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="5dp"
+                android:text="主页"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/msg_unread_iv"
@@ -41,9 +49,17 @@
 
             <Button
                 android:id="@+id/actionbar_contact_btn"
-                style="@style/ActionBarItem"
-                android:drawableTop="@drawable/actionbar_contact_drawable_bg"
-                android:text="联系人" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/actionbar_msg_drawable_bg"
+                android:drawableTop="@drawable/index_course"
+                android:gravity="center_horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="5dp"
+                android:text="课程"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" 
+                android:textStyle="normal"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -57,9 +73,17 @@
 
             <Button
                 android:id="@+id/actionbar_me_btn"
-                style="@style/ActionBarItem"
-                android:drawableTop="@drawable/actionbar_me_drawable_bg"
-                android:text="我" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/actionbar_msg_drawable_bg"
+                android:drawableTop="@drawable/index_myself"
+                android:gravity="center_horizontal"
+                android:paddingBottom="7dp"
+                android:paddingTop="5dp"
+                android:text="我的"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:textStyle="normal" />
         </FrameLayout>
     </LinearLayout>
 

@@ -227,6 +227,9 @@ containing a value of this type.
         public static final int contacts_pinner_txt=0x7f060017;
         public static final int contacts_txt_color=0x7f060018;
         public static final int conv_list_split_line_color=0x7f060015;
+        /**  菜单栏、导航栏 
+         */
+        public static final int dao_hang=0x7f060033;
         /**  绿色 
          */
         public static final int darkgreen=0x7f06002f;
@@ -260,6 +263,7 @@ containing a value of this type.
         public static final int menu_item_back_pres_color=0x7f060011;
         public static final int menu_item_click_color=0x7f060027;
         public static final int msg_list_item_sel_color=0x7f06001a;
+        public static final int pr_dao_hang=0x7f060034;
         public static final int re_login_btn_def_color=0x7f060005;
         /**  注册头像设置页面 
          */

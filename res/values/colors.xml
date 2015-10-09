@@ -74,4 +74,7 @@
 	<color name="white">#FFFFFF</color>
     
     <color name="light_blue">#8CA4FF</color>
+    <!-- 菜单栏、导航栏 -->
+    <color name="dao_hang">#799dfe</color>
+    <color name="pr_dao_hang">#5784ff</color>
 </resources>
