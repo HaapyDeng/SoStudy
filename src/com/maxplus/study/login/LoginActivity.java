@@ -5,19 +5,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -32,9 +28,9 @@ import cn.jpush.im.api.BasicCallback;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.maxplus.study.main.MainActivity;
+import com.maxplus.study.regist.RegistActivity;
 import com.maxplus.study.utils.HttpClient;
 import com.maxplus.study.utils.NetworkUtils;
-import com.maxplus.study.utils.SharePreferenceManager;
 import com.sostudy.R;
 
 public class LoginActivity extends Activity {
@@ -42,7 +38,7 @@ public class LoginActivity extends Activity {
 	private EditText edt_UserName;
 	private EditText edt_Password;
 	private LinearLayout ll, ll2;
-	private Button btn_login;
+	private Button btn_login, btn_regist;
 	private String userName;
 	private String password;
 	private CheckBox rem_pw;
@@ -81,21 +77,23 @@ public class LoginActivity extends Activity {
 		btn_login = (Button) findViewById(R.id.login);
 		ll = (LinearLayout) findViewById(R.id.ll_1);
 		ll2 = (LinearLayout) findViewById(R.id.imgView);
+		btn_regist = (Button) findViewById(R.id.register);
+		
 
-		Animation animation = (Animation) AnimationUtils.loadAnimation(
-				LoginActivity.this, R.anim.translate);
-		ll2.startAnimation(animation);
-		ll2.setVisibility(View.VISIBLE);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Animation animation2 = (Animation) AnimationUtils
-						.loadAnimation(LoginActivity.this, R.anim.translate);
-				ll.startAnimation(animation2);
-				ll.setVisibility(View.VISIBLE);
-			}
-
-		}, 500);
+//		Animation animation = (Animation) AnimationUtils.loadAnimation(
+//				LoginActivity.this, R.anim.translate);
+//		ll2.startAnimation(animation);
+//		ll2.setVisibility(View.VISIBLE);
+//		new Handler().postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Animation animation2 = (Animation) AnimationUtils
+//						.loadAnimation(LoginActivity.this, R.anim.translate);
+//				ll.startAnimation(animation2);
+//				ll.setVisibility(View.VISIBLE);
+//			}
+//
+//		}, 500);
 
 		// 监听登录事件
 		btn_login.setOnClickListener(new OnClickListener() {
@@ -124,6 +122,17 @@ public class LoginActivity extends Activity {
 
 			}
 
+		});
+		//监听注册按钮事件
+		btn_regist.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent();
+				intent.setClass(LoginActivity.this, RegistActivity.class);
+				startActivity(intent);
+				finish();
+			}
 		});
 
 		// 监听记住密码多选框按钮事件

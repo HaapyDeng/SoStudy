@@ -144,30 +144,27 @@
         </activity>
         <activity
             android:name="com.maxplus.study.chat.BrowserViewPagerActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_browserViewPager" >
+            android:label="@string/title_activity_browserViewPager"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="com.maxplus.study.maintable.ConversationListActivity"
             android:label="@string/title_activity_a" >
         </activity>
         <activity
             android:name="com.maxplus.study.chat.PickPictureTotalActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_a" >
+            android:label="@string/title_activity_a"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name="com.maxplus.study.chat.PickPictureActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_a" >
+            android:label="@string/title_activity_a"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="com.maxplus.study.my.MeFragment"
             android:label="@string/title_activity_b"
-            android:theme="@android:style/Theme.NoTitleBar"
-            >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name="com.mcom.maxplus.study.main.ContactsFragment"
@@ -186,6 +183,14 @@
         <activity
             android:name="com.maxplus.study.login.LogoutActivity"
             android:label="@string/title_activity_logout" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.regist.RegistActivity"
+            android:label="@string/title_activity_regist" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.regist.RegistNextActivity"
+            android:label="@string/title_activity_regist_next" >
         </activity>
     </application>
 

@@ -2,6 +2,8 @@ package com.maxplus.study.my;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.maxplus.study.chat.ConversationListFragment;
 import com.sostudy.R;
 
 public class MeFragment extends Fragment implements OnClickListener {
@@ -60,10 +63,16 @@ public class MeFragment extends Fragment implements OnClickListener {
 		case R.id.et_myCourse:
 		case R.id.et_myNotice:
 		case R.id.et_myMessage:
+			ConversationListFragment convActivity = new ConversationListFragment();
+			FragmentManager fm = getFragmentManager();
+			FragmentTransaction ft = fm.beginTransaction();
+			ft.add(R.id.me_fragment, convActivity);
+			ft.commit();
+
 		case R.id.et_myWork:
 		case R.id.et_mySet:
 		case R.id.bt_exit:
-			
+
 			break;
 
 		default:
