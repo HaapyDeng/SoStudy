@@ -113,7 +113,7 @@ public class MeFragment extends Fragment implements OnClickListener {
 
 			String token = sp.getString("USER_TOKEN", "");
 			;
-			String url = "http://www.sostudy.cn/";
+			String url = "http://www.sostudy.cn";
 			String realUrl = url + "/login/logout.php" + "?Sesskey=" + token;
 			HttpClient.get(realUrl, null, new JsonHttpResponseHandler() {
 				@Override
