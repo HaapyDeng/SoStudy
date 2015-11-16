@@ -167,10 +167,10 @@ public class ConversationListFragment extends BaseFragment {
 		// 当前用户信息为空，需要重新登录
 		if (null == JMessageClient.getMyInfo()
 				|| TextUtils.isEmpty(JMessageClient.getMyInfo().getUserName())) {
-			// Intent intent = new Intent();
-			// intent.setClass(this.getActivity(), LoginActivity.class);
-			// startActivity(intent);
-			// getActivity().finish();
+			Intent intent = new Intent();
+			intent.setClass(this.getActivity(), LoginActivity.class);
+			startActivity(intent);
+			getActivity().finish();
 		} else {
 			dismissPopWindow();
 			mConvListController.refreshConvList();
