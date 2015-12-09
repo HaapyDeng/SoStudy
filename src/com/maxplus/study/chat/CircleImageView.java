@@ -35,6 +35,6 @@ public class CircleImageView extends BaseImageView {
 
     @Override
     public Bitmap getBitmap() {
-        return getBitmap(getWidth(), getHeight());
-    }
+		return getBitmap(getWidth(), getHeight());
+	}
 }
