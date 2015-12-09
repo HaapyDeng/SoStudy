@@ -81,21 +81,21 @@ public class LoginActivity extends Activity {
 		btn_login = (Button) findViewById(R.id.login);
 		ll = (LinearLayout) findViewById(R.id.ll_1);
 		ll2 = (LinearLayout) findViewById(R.id.imgView);
-
-		Animation animation = (Animation) AnimationUtils.loadAnimation(
-				LoginActivity.this, R.anim.translate);
-		ll2.startAnimation(animation);
-		ll2.setVisibility(View.VISIBLE);
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Animation animation2 = (Animation) AnimationUtils
-						.loadAnimation(LoginActivity.this, R.anim.translate);
-				ll.startAnimation(animation2);
-				ll.setVisibility(View.VISIBLE);
-			}
-
-		}, 500);
+		//动画弹出
+//		Animation animation = (Animation) AnimationUtils.loadAnimation(
+//				LoginActivity.this, R.anim.translate);
+//		ll2.startAnimation(animation);
+//		ll2.setVisibility(View.VISIBLE);
+//		new Handler().postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Animation animation2 = (Animation) AnimationUtils
+//						.loadAnimation(LoginActivity.this, R.anim.translate);
+//				ll.startAnimation(animation2);
+//				ll.setVisibility(View.VISIBLE);
+//			}
+//
+//		}, 500);
 
 		// 监听登录事件
 		btn_login.setOnClickListener(new OnClickListener() {
