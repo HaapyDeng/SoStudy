@@ -34,8 +34,8 @@ public class MainController implements OnClickListener, OnPageChangeListener {
 		ConversationListFragment convActivity = new ConversationListFragment();
 		Fragment contactsActivity = new ContactsFragment();
 		mMeActivity = new MeFragment();
-		fragments.add(convActivity);
 		fragments.add(contactsActivity);
+		fragments.add(convActivity);
 		fragments.add(mMeActivity);
 		ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(
 				mContext.getSupportFragmentManger(), fragments);
