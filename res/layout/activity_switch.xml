@@ -5,6 +5,20 @@
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/dao_hang" >
+
+        <ImageView
+            android:id="@+id/create_group_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/title_bg" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/rl_header"
         android:layout_width="fill_parent"
         android:layout_height="48dp" >
@@ -14,8 +28,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="8.0dp" 
-            android:showDividers="middle|end|beginning">
+            android:paddingLeft="8.0dp"
+            android:showDividers="middle|end|beginning" >
 
             <Button
                 android:id="@+id/btn_message"
@@ -23,7 +37,7 @@
                 android:layout_height="50dip"
                 android:background="@drawable/switchbuttonstyle"
                 android:gravity="center"
-                android:text="消息"
+                android:text="对话"
                 android:textColor="#5784ff"
                 android:textSize="14sp" />
 
@@ -33,8 +47,8 @@
                 android:layout_height="50dip"
                 android:background="@drawable/switchbuttonstyle2"
                 android:gravity="center"
-                android:text="电话"
-                android:textColor="#5784ff"
+                android:text="好友"
+                android:textColor="#333333"
                 android:textSize="14sp" />
         </LinearLayout>
     </RelativeLayout>

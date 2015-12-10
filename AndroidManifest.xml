@@ -184,10 +184,6 @@
             android:name="com.maxplus.study.login.LogoutActivity"
             android:label="@string/title_activity_logout" >
         </activity>
-        <activity
-            android:name="com.maxplus.study.friend.SwitchActivity"
-            android:label="@string/title_activity_switch" >
-        </activity>
     </application>
 
 </manifest>

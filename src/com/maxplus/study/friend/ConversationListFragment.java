@@ -85,17 +85,17 @@ public class ConversationListFragment extends BaseFragment {
 	}
 
 	// 显示下拉菜单
-	public void showMenuPopWindow() {
-		mMenuPopWindow.setTouchable(true);
-		mMenuPopWindow.setOutsideTouchable(true);
-		mMenuPopWindow.setBackgroundDrawable(new BitmapDrawable(getResources(),
-				(Bitmap) null));
-		if (mMenuPopWindow.isShowing()) {
-			mMenuPopWindow.dismiss();
-		} else
-			mMenuPopWindow.showAsDropDown(
-					mRootView.findViewById(R.id.create_group_btn), -10, -5);
-	}
+//	public void showMenuPopWindow() {
+//		mMenuPopWindow.setTouchable(true);
+//		mMenuPopWindow.setOutsideTouchable(true);
+//		mMenuPopWindow.setBackgroundDrawable(new BitmapDrawable(getResources(),
+//				(Bitmap) null));
+//		if (mMenuPopWindow.isShowing()) {
+//			mMenuPopWindow.dismiss();
+//		} else
+//			mMenuPopWindow.showAsDropDown(
+//					mRootView.findViewById(R.id.create_group_btn), -10, -5);
+//	}
 
 	/**
 	 * 当触发GetUserInfo后，得到Conversation后，刷新界面 通常触发的情况是新会话创建时刷新目标头像

@@ -18,8 +18,8 @@ public class ConversationListView {
 	
 	private View mMsgView;
 	private ListView mConvListView = null;
-	private TextView mTitle;
-	private ImageButton mCreateGroup;
+//	private TextView mTitle;
+//	private ImageButton mCreateGroup;
     private Context mContext;
 
 	public ConversationListView(View view, Context context) {
@@ -29,10 +29,10 @@ public class ConversationListView {
 
 
 	public void initModule(){
-		mTitle = (TextView) mMsgView.findViewById(R.id.main_title_bar_title);
-		mTitle.setText(mContext.getString(R.string.actionbar_conversation));
+//		mTitle = (TextView) mMsgView.findViewById(R.id.main_title_bar_title);
+//		mTitle.setText(mContext.getString(R.string.actionbar_conversation));
 		mConvListView = (ListView) mMsgView.findViewById(R.id.conv_list_view);
-		mCreateGroup = (ImageButton) mMsgView.findViewById(R.id.create_group_btn);
+//		mCreateGroup = (ImageButton) mMsgView.findViewById(R.id.create_group_btn);
 	}
 	
 	public void setConvListAdapter(ListAdapter adapter){
@@ -40,7 +40,7 @@ public class ConversationListView {
 	}
 	
 	public void setListener(OnClickListener onClickListener){
-		mCreateGroup.setOnClickListener(onClickListener);
+//		mCreateGroup.setOnClickListener(onClickListener);
 	}
 	
 	public void setItemListeners(OnItemClickListener onClickListener) {
