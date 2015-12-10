@@ -70,9 +70,9 @@ public class ConversationListController implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-//		case R.id.create_group_btn:
-//			mContext.showMenuPopWindow();
-//			break;
+		case R.id.create_group_btn:
+			mContext.showMenuPopWindow();
+			break;
 		}
 	}
 
