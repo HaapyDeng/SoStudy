@@ -1,4 +1,4 @@
-package com.maxplus.study.maintable;
+package com.maxplus.study.friend;
 
 import cn.jpush.im.android.api.JMessageClient;
 

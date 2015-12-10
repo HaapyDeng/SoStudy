@@ -150,7 +150,7 @@
         </activity>
         
         <activity
-            android:name="com.maxplus.study.maintable.ConversationListActivity"
+            android:name="com.maxplus.study.friend.ConversationListActivity"
             android:label="@string/title_activity_a" >
         </activity>
         <activity
@@ -165,11 +165,11 @@
         </activity>
         
         <activity
-            android:name="com.maxplus.study.maintable.MeFragment"
+            android:name="com.maxplus.study.me.MeFragment"
             android:label="@string/title_activity_b" >
         </activity>
         <activity
-            android:name="com.maxplus.study.maintable.ContactsFragment"
+            android:name="com.maxplus.study.course.ContactsFragment"
             android:label="@string/title_activity_c" >
         </activity>
         <activity
