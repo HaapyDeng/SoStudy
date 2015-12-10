@@ -1,4 +1,4 @@
-package com.maxplus.study.chat;
+package com.maxplus.study.friend;
 
 import java.io.File;
 
@@ -21,6 +21,11 @@ import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
 
+import com.maxplus.study.chat.BaseFragment;
+import com.maxplus.study.chat.ConversationListView;
+import com.maxplus.study.chat.MenuItemController;
+import com.maxplus.study.chat.MenuItemView;
+import com.maxplus.study.chat.NativeImageLoader;
 import com.maxplus.study.login.LoginActivity;
 import com.sostudy.R;
 

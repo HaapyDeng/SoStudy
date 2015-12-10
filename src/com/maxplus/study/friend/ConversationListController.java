@@ -1,4 +1,4 @@
-package com.maxplus.study.chat;
+package com.maxplus.study.friend;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +22,11 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.model.Conversation;
 
+import com.maxplus.study.chat.ChatActivity;
+import com.maxplus.study.chat.ConversationListAdapter;
+import com.maxplus.study.chat.ConversationListView;
+import com.maxplus.study.chat.NativeImageLoader;
+import com.maxplus.study.chat.SortConvList;
 import com.sostudy.R;
 
 public class ConversationListController implements OnClickListener,

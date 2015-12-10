@@ -9,8 +9,8 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.maxplus.study.chat.ConversationListFragment;
-import com.maxplus.study.course.ContactsFragment;
+import com.maxplus.study.course.CourseFragment;
+import com.maxplus.study.friend.ConversationListFragment;
 import com.maxplus.study.guide.ViewPagerAdapter1;
 import com.maxplus.study.me.MeFragment;
 import com.sostudy.R;
@@ -32,7 +32,7 @@ public class MainController implements OnClickListener, OnPageChangeListener {
 		List<Fragment> fragments = new ArrayList<Fragment>();
 		// init Fragment
 		ConversationListFragment convActivity = new ConversationListFragment();
-		Fragment contactsActivity = new ContactsFragment();
+		Fragment contactsActivity = new CourseFragment();
 		mMeActivity = new MeFragment();
 		fragments.add(contactsActivity);
 		fragments.add(convActivity);

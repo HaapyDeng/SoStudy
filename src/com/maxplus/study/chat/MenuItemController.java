@@ -22,6 +22,8 @@ import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.UserInfo;
 
+import com.maxplus.study.friend.ConversationListController;
+import com.maxplus.study.friend.ConversationListFragment;
 import com.sostudy.R;
 
 /**

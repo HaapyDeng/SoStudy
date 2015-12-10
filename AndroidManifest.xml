@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name="com.maxplus.study.application.AppApplication"
@@ -145,31 +145,29 @@
         </activity>
         <activity
             android:name="com.maxplus.study.chat.BrowserViewPagerActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_browserViewPager" >
+            android:label="@string/title_activity_browserViewPager"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
         <activity
-            android:name="com.maxplus.study.friend.ConversationListActivity"
+            android:name="com.maxplus.study.friend.ConversationListFragment"
             android:label="@string/title_activity_a" >
         </activity>
         <activity
             android:name="com.maxplus.study.chat.PickPictureTotalActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_a" >
+            android:label="@string/title_activity_a"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
             android:name="com.maxplus.study.chat.PickPictureActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:label="@string/title_activity_a" >
+            android:label="@string/title_activity_a"
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
         <activity
             android:name="com.maxplus.study.me.MeFragment"
             android:label="@string/title_activity_b" >
         </activity>
         <activity
-            android:name="com.maxplus.study.course.ContactsFragment"
+            android:name="com.maxplus.study.course.CourseFragment"
             android:label="@string/title_activity_c" >
         </activity>
         <activity
@@ -185,6 +183,10 @@
         <activity
             android:name="com.maxplus.study.login.LogoutActivity"
             android:label="@string/title_activity_logout" >
+        </activity>
+        <activity
+            android:name="com.maxplus.study.friend.SwitchActivity"
+            android:label="@string/title_activity_switch" >
         </activity>
     </application>
 
