@@ -35,6 +35,7 @@ public class MeFragment extends Fragment {
 		btn_info = (RelativeLayout) getActivity().findViewById(R.id.btn_info);
 		btn_info.setOnClickListener(onClicker);
 	}
+	//111111
 
 	private OnClickListener onClicker = new OnClickListener() {
 
