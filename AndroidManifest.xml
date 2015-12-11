@@ -184,6 +184,10 @@
             android:name="com.maxplus.study.login.LogoutActivity"
             android:label="@string/title_activity_logout" >
         </activity>
+        <activity
+            android:name="com.maxplus.study.me.MyInfoActivity"
+            android:label="@string/title_activity_my_info" >
+        </activity>
     </application>
 
 </manifest>
