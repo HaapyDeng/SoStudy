@@ -14,6 +14,6 @@ public class CourseFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater,
 			 ViewGroup container, Bundle savedInstanceState) {
 
-		return inflater.inflate(R.layout.fragment_call, null);
+		return inflater.inflate(R.layout.fragment_course, null);
 	}
 }

@@ -13,7 +13,14 @@ public class MeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.fragment_call, null);
+		return inflater.inflate(R.layout.fragment_me, null);
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewCreated(view, savedInstanceState);
+		
 	}
 
 }
