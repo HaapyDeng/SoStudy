@@ -22,7 +22,6 @@
             android:layout_gravity="center"
             android:background="@drawable/index_icon2"
             android:contentDescription="@string/app_name" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -30,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="vertical"
-         >
+        android:orientation="vertical" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -103,6 +101,23 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/login_btn"
                 android:text="@string/login"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_4"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_below="@+id/login" />
+
+            <Button
+                android:id="@+id/btn_registe"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_4"
+                android:layout_centerInParent="true"
+                android:background="@drawable/login_btn"
+                android:text="注册"
                 android:textColor="#ffffff"
                 android:textSize="25sp" />
         </RelativeLayout>

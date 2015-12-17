@@ -42,7 +42,7 @@ public class LoginActivity extends Activity {
 	private EditText edt_UserName;
 	private EditText edt_Password;
 	private LinearLayout ll, ll2;
-	private Button btn_login;
+	private Button btn_login, btn_registe;
 	private String userName;
 	private String password;
 	private CheckBox rem_pw;
@@ -81,6 +81,18 @@ public class LoginActivity extends Activity {
 		btn_login = (Button) findViewById(R.id.login);
 		ll = (LinearLayout) findViewById(R.id.ll_1);
 		ll2 = (LinearLayout) findViewById(R.id.imgView);
+		btn_registe = (Button) findViewById(R.id.btn_registe);
+		btn_registe.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent();
+				intent.setClass(LoginActivity.this, RegisteActivity.class);
+				startActivity(intent);
+
+			}
+		});
+
 		// 动画弹出
 		// Animation animation = (Animation) AnimationUtils.loadAnimation(
 		// LoginActivity.this, R.anim.translate);

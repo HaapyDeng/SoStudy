@@ -129,5 +129,6 @@
     <string name="second">秒</string>
     <string name="title_activity_switch">SwitchActivity</string>
     <string name="title_activity_my_info">MyInfoActivity</string>
+    <string name="title_activity_registe">RegisteActivity</string>
 
 </resources>

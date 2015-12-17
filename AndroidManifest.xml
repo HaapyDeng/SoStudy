@@ -190,6 +190,11 @@
             android:label="@string/title_activity_my_info"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.maxplus.study.login.RegisteActivity"
+            android:label="@string/title_activity_registe"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
