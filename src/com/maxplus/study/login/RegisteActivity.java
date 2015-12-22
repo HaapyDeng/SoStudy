@@ -1,12 +1,9 @@
 package com.maxplus.study.login;
 
-import com.sostudy.R;
-import com.sostudy.R.layout;
-import com.sostudy.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
+
+import com.sostudy.R;
 
 public class RegisteActivity extends Activity {
 
